@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+      table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 1rem;
+          margin-top: 2rem;
+      }
+
+      th, td {
+          padding: 0.75rem;
+          text-align: center;
+          vertical-align: middle;
+      }
+
+      th {
+          background-color: #e44312;
+     
+      }
+
+      /* Estilos para los botones */
+      .btn {
+          padding: 0.5rem 1rem;
+          margin-top: 0.5rem;
+      }
+
+      .btn-primary {
+          background-color: #007bff;
+          border-color: #007bff;
+      }
+
+      .btn-primary:hover {
+          background-color: #0069d9;
+          border-color: #0062cc;
+      }
+
+      .btn-danger {
+          background-color: #dc3545;
+          border-color: #dc3545;
+      }
+
+      .btn-danger:hover {
+          background-color: #c82333;
+          border-color: #bd2130;
+      }
+  </style>
+
+</head>
+<body>
+    <!--Navbar consists only Home and Add User-->
+    <nav class="navbar navbar-expand-lg bg-primary">
+      <div class="navbar-nav">
+        <a class="nav-link active text-white" aria-current="page" routerLink="/">Inicio</a>
+        <a class="nav-link text-white" routerLink="/add">Agregar Persona</a>
+        <a class="nav-link text-white" routerLink="/seguros">Seguros</a>
+        <a class="nav-link text-white" routerLink="/addseguro">Agregar Seguros</a>
+      </div>
+    </nav>
+        <!--Table to display all the users-->
+          <!--container-->
+          <div class="container my-5">
+              <div class="row">
+                  <div class="col-md-12">
+                      <h1 class="text-center">Lista de Seguros</h1>
+                      <!--Add button -->
+                        <div class="d-flex justify-content-between">
+                          <button class="btn btn-dark" routerLink="/addseguro">Nuevo Seguro</button>
+                      </div>
+  
+                      <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">Id</th>
+                              <th scope="col">Nombre</th>
+                              <th scope="col">Costo</th>
+                              <th scope="col">Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let seguro of seguros">
+                              <th scope="row">{{seguro.id}}</th>
+                              <td>{{seguro.name}}</td>
+                              <td>{{seguro.cost}}</td>
+                              <td>
+                                 <button class="btn btn-primary" routerLink="/updateseguro/{{seguro.id}}">Editar</button> 
+                                <button class="btn btn-danger mx-2" (click)="deleteseguro(seguro.id)">Eliminar</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </div>
+              </div>
+          </div>
+        
+</body>
+</html>
